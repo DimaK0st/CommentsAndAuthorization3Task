@@ -1,0 +1,42 @@
+<?php
+
+function getRegisterPage(){
+    echo( '
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link href="/style/registration.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-offset-3 col-md-6">
+            <form name="formsRegister" class="form-horizontal">
+                <span class="heading">Регистрация</span>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="E-mail">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="inputLogin" name="inputLogin" placeholder="Login">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="form-group help">
+                    <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
+                    <i class="fa fa-lock"></i>
+                    <a href="#" class="fa fa-question-circle"></a>
+                </div>
+                <div class="form-group help">
+                    <input type="password" class="form-control" id="inputRePassword" name="inputRePassword" placeholder="Re-password">
+                    <i class="fa fa-lock"></i>
+                    <a href="#" class="fa fa-question-circle"></a>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">ВХОД</button>
+                </div>
+            </form>
+        </div>
+
+    </div><!-- /.row -->
+</div><!-- /.container -->
+<script src="/script/registration.js"></script>
+    ');
+    }
