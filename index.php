@@ -4,12 +4,14 @@
 include('views/view.php');
 include('views/authorization.php');
 include('views/registration.php');
+include('models/dbHelper.php');
 $requestUri = explode('/', stristr($_SERVER['REQUEST_URI'] . '?', '?', true));
 array_shift($requestUri);
 $router = array();
 $router['GET'] = [
     '/\/auth/' => ['getAuthPage'],
-    '/\/register/' => ['getRegisterPage']
+    '/\/register/' => ['getRegisterPage'],
+    '/\/dbTest/' => ['dbTest']
 ];
 $router['POST'] = [
     '/\/post\/auth/' => ['postAuth'],
