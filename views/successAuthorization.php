@@ -1,10 +1,12 @@
 <?php
-function successAuthorization(){
+function successAuthorization()
+{
 
     echo "
     <div>
     <span style='color: greenyellow'>Поздравляем, успешная авторизация!</span>
-</div>
+    <button onclick='window.location.href = \"/auth\"'>Выйти</button>
+    </div>
     ";
 
 }

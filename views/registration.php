@@ -29,6 +29,8 @@ function getRegisterPage(){
                     <i class="fa fa-lock"></i>
                     <a href="#" class="fa fa-question-circle"></a>
                 </div>
+                <div style="margin-bottom: 10px">
+                <span id="response" style="width: 100px; height: 100px;"></span></div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">ВХОД</button>
                 </div>

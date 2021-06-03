@@ -10,7 +10,21 @@ document.forms.formsLogin.onsubmit= function (e){
     objXMLHttpRequest.onreadystatechange = function () {
         if (objXMLHttpRequest.readyState === 4) {
             if (objXMLHttpRequest.status === 200) {
-                alert(objXMLHttpRequest.responseText);
+                switch (parseInt(res)) {
+                    case 1:
+                        alert("objXMLHttpRequest.responseText")
+                        servResponse.style.color = "blue";
+                        servResponse.textContent = "Успешный вход";
+                        window.location.href = '/successAuth'
+                        break;
+                    case 2:
+                        alert(objXMLHttpRequest.responseText)
+                        servResponse.style.color = "red";
+                        servResponse.textContent = "Вы ввели не верные данный/ пользователь не существует";
+                        break;
+                    case 3:
+                        break;
+                }
             } else {
                 alert('Error Code: ' + objXMLHttpRequest.status);
                 alert('Error Message: ' + objXMLHttpRequest.statusText);

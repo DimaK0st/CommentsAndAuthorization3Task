@@ -4,6 +4,7 @@
 include('views/view.php');
 include('views/authorization.php');
 include('views/registration.php');
+include('views/successAuthorization.php');
 require_once ('models/dbHelper.php');
 
 
@@ -13,6 +14,7 @@ $router = array();
 $router['GET'] = [
     '/\/auth/' => ['getAuthPage'],
     '/\/register/' => ['getRegisterPage'],
+    '/\/successAuth/' => ['successAuthorization'],
     '/\/dbTest/' => ['dbTest']
 ];
 $router['POST'] = [
@@ -23,8 +25,8 @@ $router['PUT'] = [];
 $router['DELETE'] = [
     '/\/test\/delete\/test\/([0-9]+)/' => ['test']
 ];
- echo($requestUri);
-print("/" . implode('/', $requestUri));
+// echo($requestUri);
+//print("/" . implode('/', $requestUri));
 getRouter("/" . implode('/', $requestUri));
 function getRouter($url)
 {
@@ -50,7 +52,7 @@ function postAuth(){
 function postRegister(){
     $db=new dbHelper();
     $db->addUserToDB($_POST["login"], $_POST["email"], $_POST["password"]);
-    echo "Email: ".$_POST["email"]." Login: ".$_POST["login"]." Password: ".$_POST["password"];
+//    echo "Email: ".$_POST["email"]." Login: ".$_POST["login"]." Password: ".$_POST["password"];
 }
 
 

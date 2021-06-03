@@ -54,7 +54,7 @@ class dbHelper{
     public function checkLoginAndEmail($userName, $email){
         // создание строки запроса
         $query = "SELECT * FROM " . $this->tableUserData." where userName='".$userName."'"." or email='".$email."'";
-        echo $query;
+//        echo $query;
 // выполняем запрос
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
@@ -69,15 +69,15 @@ class dbHelper{
 
 
             $query = "INSERT INTO " . $this->tableUserData . " (userName,email,password) VALUES('".$userName."', '".$email."', '".$password."')";
-            echo $query;
+//            echo $query;
 // выполняем запрос
             $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
             if ($result) {
-                echo "<span style='color:blue;'>Данные добавлены</span>";
+                echo "1";
             }
         }
         else{
-            echo "<span style='color:red;'>Пользователь с таким логином/почтой уже зарегистрирован</span>";
+            echo "2";
         }
 // закрываем подключение
         }
