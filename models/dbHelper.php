@@ -82,7 +82,23 @@ class dbHelper{
 // закрываем подключение
         }
 
+    public function checkUserData($login, $password){
 
+        $query = "SELECT password FROM " . $this->tableUserData." where userName='".$login."'"." or email='".$login."'";
+//        echo $query;
+// выполняем запрос
+        $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
+        if ($result) {
+            $row = mysqli_fetch_array($result);
+            if ($row['password']==$password and $password!==""){
+                echo "1";
+            }
+            else{
+                echo "2";
+            }
+        }
+
+    }
 
 
 public function __destruct (){

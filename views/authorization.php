@@ -1,6 +1,7 @@
 <?php
 
-function getAuthPage(){
+function getAuthPage()
+{
     echo('
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -12,7 +13,7 @@ function getAuthPage(){
             <form name="formsLogin" class="form-horizontal">
                 <span class="heading">АВТОРИЗАЦИЯ</span>
                 <div class="form-group">
-                    <input type="email" class="form-control" id="inputEmail" name="inputEmail" placeholder="E-mail">
+                    <input class="form-control" id="inputLogin" name="inputLogin" placeholder="Login/Email">
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="form-group help">
@@ -20,8 +21,15 @@ function getAuthPage(){
                     <i class="fa fa-lock"></i>
                     <a href="#" class="fa fa-question-circle"></a>
                 </div>
+                
+                <div style="margin-bottom: 10px">
+                    <span id="response" style="width: 100px; height: 100px;"></span>
+                </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">ВХОД</button>
+                    <button type="submit" class="btn btn-default">Вход</button>
+                </div>
+                <div class="form-group">
+                    <a  onclick="window.location.href = \'/register\'" style="cursor: pointer;text-decoration: none;" class="btn2 btn-default">Зарегистрироваться</a>
                 </div>
             </form>
         </div>
@@ -30,4 +38,4 @@ function getAuthPage(){
 </div><!-- /.container -->
 <script src="/script/authorization.js"></script>
     ');
-    }
+}

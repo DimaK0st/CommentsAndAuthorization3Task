@@ -32,7 +32,10 @@ function getRegisterPage(){
                 <div style="margin-bottom: 10px">
                 <span id="response" style="width: 100px; height: 100px;"></span></div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">ВХОД</button>
+                    <button type="submit" class="btn btn-default">Зарегистрироваться</button>
+                </div>
+                <div class="form-group">
+                    <a  onclick="window.location.href = \'/auth\'" style="cursor: pointer;text-decoration: none;" class="btn2 btn-default">Авторизоваться</a>
                 </div>
             </form>
         </div>

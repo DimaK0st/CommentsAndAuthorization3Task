@@ -46,7 +46,9 @@ function getRouter($url)
 }
 
 function postAuth(){
-    echo "Email: ".$_POST["email"]." Password: ".$_POST["password"];
+
+    $db=new dbHelper();
+    $db->checkUserData($_POST["login"],$_POST["password"]);
 }
 
 function postRegister(){

@@ -16,23 +16,19 @@ document.forms.formsRegister.onsubmit = function (e) {
     } else if (!/^[a-zA-Z0-9\._-]+@[a-zA-Z0-9-]+\.[a-z]{2,8}$/.test(email)) {
         alert("Email not valid");
     } else {
-        alert("email: " + email + " login: " + login + " password: " + password + "rePassword: " + rePassword);
         var objXMLHttpRequest = new XMLHttpRequest();
 
         objXMLHttpRequest.onreadystatechange = function () {
             if (objXMLHttpRequest.readyState === 4) {
                 if (objXMLHttpRequest.status === 200) {
                     let res= objXMLHttpRequest.responseText;
-
                     switch (parseInt(res)) {
                         case 1:
-                            alert("objXMLHttpRequest.responseText")
                             servResponse.style.color = "blue";
                             servResponse.textContent = "Данные добавлены";
                             window.location.href = '/auth'
                             break;
                         case 2:
-                            alert(objXMLHttpRequest.responseText)
                             servResponse.style.color = "red";
                             servResponse.textContent = "Пользователь с таким логином/почтой уже зарегистрирован";
                             break;
@@ -48,6 +44,6 @@ document.forms.formsRegister.onsubmit = function (e) {
 
         objXMLHttpRequest.open('POST', '/post/register');
         objXMLHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        objXMLHttpRequest.send("&email= " + email + "&login= " + login + "&password= " + password);
+        objXMLHttpRequest.send("&email=" + email + "&login=" + login + "&password=" + password);
     }
 }
