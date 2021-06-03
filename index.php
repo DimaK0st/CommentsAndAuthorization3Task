@@ -4,7 +4,9 @@
 include('views/view.php');
 include('views/authorization.php');
 include('views/registration.php');
-include('models/dbHelper.php');
+require_once ('models/dbHelper.php');
+
+
 $requestUri = explode('/', stristr($_SERVER['REQUEST_URI'] . '?', '?', true));
 array_shift($requestUri);
 $router = array();
@@ -41,13 +43,13 @@ function getRouter($url)
     }
 }
 
-
 function postAuth(){
-
     echo "Email: ".$_POST["email"]." Password: ".$_POST["password"];
 }
 
 function postRegister(){
+    $db=new dbHelper();
+    $db->addUserToDB($_POST["login"], $_POST["email"], $_POST["password"]);
     echo "Email: ".$_POST["email"]." Login: ".$_POST["login"]." Password: ".$_POST["password"];
 }
 

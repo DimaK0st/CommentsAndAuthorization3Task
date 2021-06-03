@@ -1,46 +1,93 @@
 <?php
-function dbTest()
-{
+class dbHelper{
 
-    $host = 'localhost'; // адрес сервера
-    $database = 'task3'; // имя базы данных
-    $user = 'root'; // имя пользователя
-    $password = 'root'; // пароль
-    $tableUserData = "userdata";
+    public $host = 'localhost';
+    public $database = 'task3';
+    public $user = 'root';
+    public $password = 'root';
+    public $tableUserData = "userdata";
+    public $link;
 
-    $link = mysqli_connect($host, $user, $password, $database)
-    or die("Ошибка " . mysqli_error($link));
+
+    public function __construct(){
+
+        $this->link = mysqli_connect($this->host, $this->user, $this->password, $this->database) or die("Ошибка " . mysqli_error($this->link));
+}
 
 // выполняем операции с базой данных
 
 
 // экранирования символов для mysql
-    $name = htmlentities(mysqli_real_escape_string($link, $_POST['name']));
-    $company = htmlentities(mysqli_real_escape_string($link, $_POST['company']));
+    public function shieldingHtml($namePostRequest){
+
+        return htmlentities(mysqli_real_escape_string($this->link, $_POST["'".$namePostRequest."'"]));
+    }
+
+    public function getAllUsers(){
 
 // выполняем операции с базой данных
-    $query = "SELECT * FROM " . $tableUserData;
-    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-    if ($result) {
-        echo "Выполнение запроса прошло успешно";
+        $query = "SELECT * FROM " . $this->tableUserData;
+        $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
+        if ($result) {
+            echo "Выполнение запроса прошло успешно";
+        }if($result)
+        {
+            $rows = mysqli_num_rows($result); // количество полученных строк
+
+            echo "<table><tr><th>Id</th><th>UserName</th><th>Почта</th><th>Пароль</th></tr>";
+            for ($i = 0 ; $i < $rows ; ++$i)
+            {
+                $row = mysqli_fetch_row($result);
+                echo "<tr>";
+                for ($j = 0 ; $j < 4 ; ++$j) echo "<td>$row[$j]</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+
+            // очищаем результат
+            mysqli_free_result($result);
+        }
+
+
     }
 
-
-    $email = "Ivan@gmail.com";
-    $userName = "Ivan228";
-    $password = "qwerty123";
-
-// создание строки запроса
-    $query = "INSERT INTO " . $tableUserData . " (userName,email,password) VALUES('".$userName."', '".$email."', '".$password."')";
-    echo $query;
+    public function checkLoginAndEmail($userName, $email){
+        // создание строки запроса
+        $query = "SELECT * FROM " . $this->tableUserData." where userName='".$userName."'"." or email='".$email."'";
+        echo $query;
 // выполняем запрос
-    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-    if ($result) {
-        echo "<span style='color:blue;'>Данные добавлены</span>";
+        $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
+        if ($result) {
+            return mysqli_num_rows($result);
+
+        }
     }
 
+    public function addUserToDB($userName, $email, $password){
+// создание строки запроса
+        if ((int)$this->checkLoginAndEmail($userName, $email)===0){
+
+
+            $query = "INSERT INTO " . $this->tableUserData . " (userName,email,password) VALUES('".$userName."', '".$email."', '".$password."')";
+            echo $query;
+// выполняем запрос
+            $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
+            if ($result) {
+                echo "<span style='color:blue;'>Данные добавлены</span>";
+            }
+        }
+        else{
+            echo "<span style='color:red;'>Пользователь с таким логином/почтой уже зарегистрирован</span>";
+        }
 // закрываем подключение
-    mysqli_close($link);
+        }
+
+
+
+
+public function __destruct (){
+    mysqli_close($this->link);
+}
 
 
 }
