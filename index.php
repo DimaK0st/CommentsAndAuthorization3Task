@@ -5,6 +5,7 @@ include('views/view.php');
 include('views/authorization.php');
 include('views/registration.php');
 include('views/successAuthorization.php');
+include('views/comments.php');
 require_once ('models/dbHelper.php');
 
 
@@ -15,11 +16,13 @@ $router['GET'] = [
     '/\/auth/' => ['getAuthPage'],
     '/\/register/' => ['getRegisterPage'],
     '/\/successAuth/' => ['successAuthorization'],
+    '/\/comments/' => ['comments'],
     '/\/dbTest/' => ['dbTest']
 ];
 $router['POST'] = [
     '/\/post\/auth/' => ['postAuth'],
-    '/\/post\/register/' => ['postRegister']
+    '/\/post\/register/' => ['postRegister'],
+    '/\/post\/addComments/' => ['postAddComments']
 ];
 $router['PUT'] = [];
 $router['DELETE'] = [
@@ -55,6 +58,14 @@ function postRegister(){
     $db=new dbHelper();
     $db->addUserToDB($_POST["login"], $_POST["email"], $_POST["password"]);
 //    echo "Email: ".$_POST["email"]." Login: ".$_POST["login"]." Password: ".$_POST["password"];
+}
+
+function postAddComments(){
+
+    $db=new dbHelper();
+    $today = date("Y-m-d H:i:s");
+    $db->addUserToDB($_POST["author"], $_POST["msg"], $today);
+
 }
 
 
