@@ -1,11 +1,12 @@
 var servResponse = document.querySelector('#response');
 
-document.forms.formAdddComments.onsubmit= function (e){
-    author=document.forms.formAdddComments.name.value;
-    message=document.forms.formAdddComments.message.value;
+document.forms.formAddComments.onsubmit= function (e){e.preventDefault();}
+document.forms.formAddComments.onsubmit= function (e){
+    author=document.forms.formAddComments.name.value;
+    message=document.forms.formAddComments.message.value;
     e.preventDefault();
     var objXMLHttpRequest = new XMLHttpRequest();
-    alert(author, message);
+    alert(author+ message);
     objXMLHttpRequest.onreadystatechange = function () {
         if (objXMLHttpRequest.readyState === 4) {
             if (objXMLHttpRequest.status === 200) {
@@ -33,13 +34,76 @@ document.forms.formAdddComments.onsubmit= function (e){
 
     objXMLHttpRequest.open('POST', '/post/addComments');
     objXMLHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    objXMLHttpRequest.send("&author="+author+ "&msg="+msg);
+    objXMLHttpRequest.send("&author="+author+ "&msg="+message);
 }
 
 
+function ajaxChildComments(parentId, author, message){
+        var objXMLHttpRequest = new XMLHttpRequest();
+        alert(author + message);
+        objXMLHttpRequest.onreadystatechange = function () {
+            if (objXMLHttpRequest.readyState === 4) {
+                if (objXMLHttpRequest.status === 200) {
+                    let res = objXMLHttpRequest.responseText;
+                    alert(res)
+                    switch (parseInt(res)) {
+                        case 1:
+                            servResponse.style.color = "blue";
+                            servResponse.textContent = "Успешный вход";
+                            // window.location.href = '/successAuth'
+                            break;
+                        case 2:
+                            servResponse.style.color = "red";
+                            servResponse.textContent = "Вы ввели не верные данный/ пользователь не существует";
+                            break;
+                        case 3:
+                            break;
+                    }
+                } else {
+                    alert('Error Code: ' + objXMLHttpRequest.status);
+                    alert('Error Message: ' + objXMLHttpRequest.statusText);
+                }
+            }
+        }
+
+        objXMLHttpRequest.open('POST', '/post/addChildComments');
+        objXMLHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        objXMLHttpRequest.send("&author=" + author + "&msg=" + message + "&parentId=" + parentId);
+
+}
+
+function addParentComment(id){
+    let elem = document.createElement("div");
+    elem.setAttribute("class", "works__content__smallRow");
+    elem.innerHTML = `
+                <form class="mainform" name="formAddChildComments" onsubmit="return false;">
+        <span id="parentId" name="parentId" style="display: none">`+id+`</span>
+        <p class="name">
+            <input type="text" name="name" value="Имя автора" placeholder="Имя автора"
+                   />
+            <label for="name">Имя</label>
+        </p>
+
+        <p class="msg">
+            <textarea name="message" value="Текст сообщения" placeholder="Текст сообщения"></textarea>
+        </p>
+
+        <p class="send">
+            <button onclick="console.log(this.getElementById(parentId));">Отправить</button>
+        </p>
 
 
+    </form>
+`;
 
+    alert(id)
+    let btn = document.getElementById("btn"+id);
+    btn.style.display="none"
+    let parent = document.getElementById(id);
+    btn.before(elem)
+    console.log(parent)
+
+}
 
 
 
@@ -50,7 +114,7 @@ let items = [{
     "Parent": "2"
 }, {
     "Id": "2",
-    "Name": "abc",
+    "Name": "abc12312213",
     "Parent": ""
 }, {
     "Id": "3",
@@ -66,7 +130,7 @@ let items = [{
     "Parent": ""
 }, {
     "Id": "6",
-    "Name": "abc",
+    "Name": "abcasdasdasdwq",
     "Parent": "2"
 }, {
     "Id": "7",

@@ -64,7 +64,8 @@ function postAddComments(){
 
     $db=new dbHelper();
     $today = date("Y-m-d H:i:s");
-    $db->addUserToDB($_POST["author"], $_POST["msg"], $today);
+    echo $_POST["author"].$_POST["msg"]. (string)$today;
+    $db->addComments($_POST["parentId"], $_POST["author"], $_POST["msg"], $today);
 
 }
 

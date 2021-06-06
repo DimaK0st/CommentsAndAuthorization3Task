@@ -107,8 +107,16 @@ class dbHelper
 
 
     public function addComments($parentId, $author, $textComments, $date){
-        $query = "insert into comments (parentId, author, textComment, date) values '". $parentId ."', '" .$author. "', '" .$textComments. "', '" .$date."'";
-        echo $query;
+
+        echo "-------------------".$parentId.strlen ($parentId)."------------------------";
+
+        if (strlen($parentId)>0){
+            $query = "insert into comments (parentId, author, textComment, date) values ('". $parentId ."', '" .$author. "', '" .$textComments. "', '" .$date."'); ";
+        }
+        else{
+            $query = "insert into comments (author, textComment, date) values ('" .$author. "', '" .$textComments. "', '" .$date."'); ";
+        }
+    echo $query;
 // выполняем запрос
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
@@ -120,10 +128,32 @@ class dbHelper
 
 
 
+    public function getAllComments()
+    {
+
+// выполняем операции с базой данных
+        $query = "SELECT * FROM comments ORDER BY id DESC";
+        $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
+        if ($result) {
+            return $result;
+        }
 
 
 
+    }
 
+
+    public function getParentComments($parentId){
+
+// выполняем операции с базой данных
+        $query = "SELECT * FROM comments where parentId = '".$parentId."'";
+        $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
+        if ($result) {
+            return $result;
+        }
+
+
+    }
 
 
 
