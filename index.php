@@ -1,12 +1,13 @@
 <?php
 
 
-include('views/view.php');
 include('views/authorization.php');
 include('views/registration.php');
 include('views/successAuthorization.php');
 include('views/comments.php');
-require_once ('models/dbHelper.php');
+include('views/mainPage.php');
+include('controllers/controller.php');
+require_once('models/dbHelper.php');
 
 
 $requestUri = explode('/', stristr($_SERVER['REQUEST_URI'] . '?', '?', true));
@@ -17,19 +18,20 @@ $router['GET'] = [
     '/\/register/' => ['getRegisterPage'],
     '/\/successAuth/' => ['successAuthorization'],
     '/\/comments/' => ['comments'],
-    '/\/dbTest/' => ['dbTest']
+    '/\/dbTest/' => ['dbTest'],
+    '/\//' => ['getMainPage']
 ];
 $router['POST'] = [
     '/\/post\/auth/' => ['postAuth'],
     '/\/post\/register/' => ['postRegister'],
-    '/\/post\/addComments/' => ['postAddComments']
+    '/\/post\/addComments/' => ['postAddComments'],
+    '/\/post\/loadComments/' => ['loadComments']
 ];
 $router['PUT'] = [];
 $router['DELETE'] = [
     '/\/test\/delete\/test\/([0-9]+)/' => ['test']
 ];
-// echo($requestUri);
-//print("/" . implode('/', $requestUri));
+
 getRouter("/" . implode('/', $requestUri));
 function getRouter($url)
 {
@@ -37,6 +39,7 @@ function getRouter($url)
     $keys = array_keys($router[$_SERVER['REQUEST_METHOD']]);
 
     for ($i = 0; $i < count($keys); ++$i) {
+
         if (preg_match($keys[$i], $url)) {
             $funcs = $router[$_SERVER['REQUEST_METHOD']][$keys[$i]];
 
@@ -48,26 +51,7 @@ function getRouter($url)
     }
 }
 
-function postAuth(){
 
-    $db=new dbHelper();
-    $db->checkUserData($_POST["login"],$_POST["password"]);
-}
-
-function postRegister(){
-    $db=new dbHelper();
-    $db->addUserToDB($_POST["login"], $_POST["email"], $_POST["password"]);
-//    echo "Email: ".$_POST["email"]." Login: ".$_POST["login"]." Password: ".$_POST["password"];
-}
-
-function postAddComments(){
-
-    $db=new dbHelper();
-    $today = date("Y-m-d H:i:s");
-    echo $_POST["author"].$_POST["msg"]. (string)$today;
-    $db->addComments($_POST["parentId"], $_POST["author"], $_POST["msg"], $today);
-
-}
 
 
 

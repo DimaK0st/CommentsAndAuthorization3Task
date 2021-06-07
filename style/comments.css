@@ -57,3 +57,42 @@ input:hover, textarea:hover, input:focus, textarea:focus {
     border: 2px solid #C0C0E3;
 }
 
+.li-parent-comments{
+    margin: 10px 0;
+    padding: 10px;
+    position: relative;
+    background: #35be49;  word-wrap: break-word;
+}
+
+.li-child-comments{
+    margin: 10px 0;
+    padding: 10px;
+    position: relative;
+    background: #00b4ef;  word-wrap: break-word;
+}
+
+.date{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.formAddChildComments .send{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.comments p{
+    margin: 0;
+    padding: 0;
+}
+
+.messageComment{
+    position: relative;
+}
