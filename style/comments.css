@@ -5,8 +5,6 @@
     margin: 0 auto;
     border: 3px solid #EEEEEE;
     width: 800px;
-    -webkit-birder-radius: 6px;
-    -moz-border-radius: 6px;
 }
 
 input, textarea {
@@ -17,8 +15,6 @@ input, textarea {
     font: Verdana, Geneva, sans-serif;
     width: 200px;
     background: #F9F9F9;
-    -webkit-birder-radius: 4px;
-    -moz-border-radius: 4px;
 }
 
 p label {
@@ -38,7 +34,6 @@ textarea {
     line-height: 150%;
 }
 
-
 .send input {
     width: auto;
     margin-bottom: 10px;
@@ -46,8 +41,6 @@ textarea {
     font: Verdana, Geneva, sans-serif;
     background-color: #E5E5F8;
 }
-
-
 
 input:hover, textarea:hover, input:focus, textarea:focus {
     border-color: #A0A0A0;
@@ -61,14 +54,16 @@ input:hover, textarea:hover, input:focus, textarea:focus {
     margin: 10px 0;
     padding: 10px;
     position: relative;
-    background: #35be49;  word-wrap: break-word;
+    background: #35be49;
+    word-wrap: break-word;
 }
 
 .li-child-comments{
     margin: 10px 0;
     padding: 10px;
     position: relative;
-    background: #00b4ef;  word-wrap: break-word;
+    background: #00b4ef;
+    word-wrap: break-word;
 }
 
 .date{
@@ -77,7 +72,7 @@ input:hover, textarea:hover, input:focus, textarea:focus {
     top: 0;
 }
 
-.formAddChildComments .send{
+.form-add-child-comments .send{
     margin-top: 10px;
     margin-left: 10px;
 }
@@ -93,6 +88,6 @@ input:hover, textarea:hover, input:focus, textarea:focus {
     padding: 0;
 }
 
-.messageComment{
+.message-сomment{
     position: relative;
 }

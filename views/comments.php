@@ -4,13 +4,11 @@ include('models/modelComments.php');
 function comments()
 {
 
-
-
     echo '
         <div class="tempAddClass">
         
 </div>
-        <form class="mainform formAddChildComments" name="formAddChildComments" onsubmit="return false;" STYLE="display: none">
+        <form class="mainform form-add-child-comments" name="formAddChildComments" onsubmit="return false;" STYLE="display: none">
         <input id="parentId" name="parentId" class="parentId" style="display: none"></input>
         <p class="name">
             <input type="text" name="name"  placeholder="Имя автора"

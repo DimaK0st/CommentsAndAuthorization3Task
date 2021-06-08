@@ -1,6 +1,7 @@
 <?php
 
-function loadComments(){
+function loadComments()
+{
 
     $database = new dbHelper();
     $result = $database->getAllComments();
@@ -13,7 +14,7 @@ function loadComments(){
                 echo '<div class="li-parent-comments">';
                 echo "<p class='authot'>Пользователь: " . $res['author'] . "</p>";
                 echo "<span class='date'>" . $res['date'] . "</span><br>";
-                echo "<p class='messageComment'>Комментарий: " . $res['textComment'] . "</p>";
+                echo "<p class='message-сomment'>Комментарий: " . $res['textComment'] . "</p>";
                 echo "<button id='btn" . $res['id'] . "' class='btn' onclick='addParentComment(" . $res['id'] . ");'>Ответить</button>";
                 echo '</div>';
                 createTree($res['id']);
@@ -37,7 +38,7 @@ function createTree($parentId)
             echo '<div class="li-child-comments">';
             echo "<p class='authot'>Пользователь: " . $res['author'] . "</p>";
             echo "<span class='date'>" . $res['date'] . "</span><br>";
-            echo "<p class='messageComment'>Комментарий: " . $res['textComment'] . "</p>";
+            echo "<p class='message-сomment'>Комментарий: " . $res['textComment'] . "</p>";
             echo "<button id='btn" . $res['id'] . "' class='btn' onclick='addParentComment(" . $res['id'] . ");'>Ответить</button>";
             echo '</div>';
             createTree($res['id']);

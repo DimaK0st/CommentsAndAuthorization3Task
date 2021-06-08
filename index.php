@@ -18,7 +18,6 @@ $router['GET'] = [
     '/\/register/' => ['getRegisterPage'],
     '/\/successAuth/' => ['successAuthorization'],
     '/\/comments/' => ['comments'],
-    '/\/dbTest/' => ['dbTest'],
     '/\//' => ['getMainPage']
 ];
 $router['POST'] = [
@@ -50,8 +49,3 @@ function getRouter($url)
         }
     }
 }
-
-
-
-
-

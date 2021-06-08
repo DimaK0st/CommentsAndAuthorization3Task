@@ -1,4 +1,3 @@
-/* Form Style */
 .form-horizontal {
     background: #fff;
     padding-bottom: 40px;
@@ -96,7 +95,6 @@
     border-right: none;
     background: transparent;
     opacity: 0;
-    -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
 

@@ -17,10 +17,6 @@ class dbHelper
         $this->link = mysqli_connect($this->host, $this->user, $this->password, $this->database) or die("Ошибка " . mysqli_error($this->link));
     }
 
-// выполняем операции с базой данных
-
-
-// экранирования символов для mysql
     public function shieldingHtml($namePostRequest)
     {
 
@@ -29,9 +25,7 @@ class dbHelper
 
     public function getAllUsers()
     {
-
-// выполняем операции с базой данных
-        $query = "SELECT * FROM " . $this->tableUserData;
+    $query = "SELECT * FROM " . $this->tableUserData;
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
             echo "Выполнение запроса прошло успешно";
@@ -47,8 +41,6 @@ class dbHelper
                 echo "</tr>";
             }
             echo "</table>";
-
-            // очищаем результат
             mysqli_free_result($result);
         }
 
@@ -57,10 +49,7 @@ class dbHelper
 
     public function checkLoginAndEmail($userName, $email)
     {
-        // создание строки запроса
         $query = "SELECT * FROM " . $this->tableUserData . " where userName='" . $userName . "'" . " or email='" . $email . "'";
-//        echo $query;
-// выполняем запрос
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
             return mysqli_num_rows($result);
@@ -70,13 +59,8 @@ class dbHelper
 
     public function addUserToDB($userName, $email, $password)
     {
-// создание строки запроса
         if ((int)$this->checkLoginAndEmail($userName, $email) === 0) {
-
-
             $query = "INSERT INTO " . $this->tableUserData . " (userName,email,password) VALUES('" . $userName . "', '" . $email . "', '" . $password . "')";
-//            echo $query;
-// выполняем запрос
             $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
             if ($result) {
                 echo "1";
@@ -84,15 +68,12 @@ class dbHelper
         } else {
             echo "2";
         }
-// закрываем подключение
-    }
+}
 
     public function checkUserData($login, $password)
     {
 
         $query = "SELECT password FROM " . $this->tableUserData . " where userName='" . $login . "'" . " or email='" . $login . "'";
-//        echo $query;
-// выполняем запрос
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
             $row = mysqli_fetch_array($result);
@@ -107,17 +88,12 @@ class dbHelper
 
 
     public function addComments($parentId, $author, $textComments, $date){
-
-        echo "-------------------".$parentId.strlen ($parentId)."------------------------";
-
         if (strlen($parentId)>0){
             $query = "insert into comments (parentId, author, textComment, date) values ('". $parentId ."', '" .$author. "', '" .$textComments. "', '" .$date."'); ";
         }
         else{
             $query = "insert into comments (author, textComment, date) values ('" .$author. "', '" .$textComments. "', '" .$date."'); ";
         }
-    echo $query;
-// выполняем запрос
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
             echo $result;
@@ -125,14 +101,10 @@ class dbHelper
 
     }
 
-
-
-
     public function getAllComments()
     {
 
-// выполняем операции с базой данных
-        $query = "SELECT * FROM comments ORDER BY id DESC";
+    $query = "SELECT * FROM comments ORDER BY id DESC";
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
             return $result;
@@ -144,8 +116,6 @@ class dbHelper
 
 
     public function getParentComments($parentId){
-
-// выполняем операции с базой данных
         $query = "SELECT * FROM comments where parentId = '".$parentId."'";
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
