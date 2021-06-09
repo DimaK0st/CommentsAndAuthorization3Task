@@ -21,7 +21,7 @@ document.forms.formsRegister.onsubmit = function (e) {
         objXMLHttpRequest.onreadystatechange = function () {
             if (objXMLHttpRequest.readyState === 4) {
                 if (objXMLHttpRequest.status === 200) {
-                    let res= objXMLHttpRequest.responseText;
+                    let res = objXMLHttpRequest.responseText;
                     switch (parseInt(res)) {
                         case 1:
                             servResponse.style.color = "blue";

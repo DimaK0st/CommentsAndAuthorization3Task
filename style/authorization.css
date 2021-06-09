@@ -116,7 +116,7 @@
     text-transform: capitalize;
 }
 
-.form-horizontal .btn ,.form-horizontal .btn2{
+.form-horizontal .btn, .form-horizontal .btn2 {
     float: right;
     font-size: 14px;
     color: #fff;
@@ -128,13 +128,13 @@
     transition: all 0.5s ease 0s;
 }
 
-.form-horizontal .btn2{
+.form-horizontal .btn2 {
 
     background: #35be49;
 }
 
 
-.btn, .btn2{
+.btn, .btn2 {
     width: 100%;
 }
 
@@ -147,7 +147,7 @@
         left: 45px;
     }
 
-    .form-horizontal .btn,.form-horizontal .btn2 {
+    .form-horizontal .btn, .form-horizontal .btn2 {
         padding: 10px 20px;
     }
 }

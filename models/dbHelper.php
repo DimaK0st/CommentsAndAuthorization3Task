@@ -25,7 +25,7 @@ class dbHelper
 
     public function getAllUsers()
     {
-    $query = "SELECT * FROM " . $this->tableUserData;
+        $query = "SELECT * FROM " . $this->tableUserData;
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
             echo "Выполнение запроса прошло успешно";
@@ -68,7 +68,7 @@ class dbHelper
         } else {
             echo "2";
         }
-}
+    }
 
     public function checkUserData($login, $password)
     {
@@ -87,12 +87,12 @@ class dbHelper
     }
 
 
-    public function addComments($parentId, $author, $textComments, $date){
-        if (strlen($parentId)>0){
-            $query = "insert into comments (parentId, author, textComment, date) values ('". $parentId ."', '" .$author. "', '" .$textComments. "', '" .$date."'); ";
-        }
-        else{
-            $query = "insert into comments (author, textComment, date) values ('" .$author. "', '" .$textComments. "', '" .$date."'); ";
+    public function addComments($parentId, $author, $textComments, $date)
+    {
+        if (strlen($parentId) > 0) {
+            $query = "insert into comments (parentId, author, textComment, date) values ('" . $parentId . "', '" . $author . "', '" . $textComments . "', '" . $date . "'); ";
+        } else {
+            $query = "insert into comments (author, textComment, date) values ('" . $author . "', '" . $textComments . "', '" . $date . "'); ";
         }
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
@@ -104,19 +104,7 @@ class dbHelper
     public function getAllComments()
     {
 
-    $query = "SELECT * FROM comments ORDER BY id DESC";
-        $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
-        if ($result) {
-            return $result;
-        }
-
-
-
-    }
-
-
-    public function getParentComments($parentId){
-        $query = "SELECT * FROM comments where parentId = '".$parentId."'";
+        $query = "SELECT * FROM comments ORDER BY id DESC";
         $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
         if ($result) {
             return $result;
@@ -126,8 +114,16 @@ class dbHelper
     }
 
 
+    public function getParentComments($parentId)
+    {
+        $query = "SELECT * FROM comments where parentId = '" . $parentId . "'";
+        $result = mysqli_query($this->link, $query) or die("Ошибка " . mysqli_error($this->link));
+        if ($result) {
+            return $result;
+        }
 
 
+    }
 
 
     public function __destruct()
