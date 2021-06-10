@@ -1,13 +1,12 @@
 var servResponse = document.querySelector('#response');
 
-
 document.forms.formsRegister.onsubmit = function (e) {
     e.preventDefault();
 
-    email = document.forms.formsRegister.inputEmail.value;
-    login = document.forms.formsRegister.inputLogin.value;
-    password = document.forms.formsRegister.inputPassword.value;
-    rePassword = document.forms.formsRegister.inputRePassword.value;
+    let email = document.forms.formsRegister.inputEmail.value;
+    let login = document.forms.formsRegister.inputLogin.value;
+    let password = document.forms.formsRegister.inputPassword.value;
+    let rePassword = document.forms.formsRegister.inputRePassword.value;
 
     if (password !== rePassword) {
         alert("Passwords not coincidence");

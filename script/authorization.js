@@ -1,10 +1,10 @@
-var servResponse = document.querySelector('#response');
+let servResponse = document.querySelector('#response');
 
 document.forms.formsLogin.onsubmit= function (e){
-    login=document.forms.formsLogin.inputLogin.value;
-    password=document.forms.formsLogin.inputPassword.value;
+    let login=document.forms.formsLogin.inputLogin.value;
+    let password=document.forms.formsLogin.inputPassword.value;
     e.preventDefault();
-    var objXMLHttpRequest = new XMLHttpRequest();
+    let objXMLHttpRequest = new XMLHttpRequest();
 
     objXMLHttpRequest.onreadystatechange = function () {
         if (objXMLHttpRequest.readyState === 4) {

@@ -10,15 +10,10 @@ function loadComments()
         echo '<ul>';
         foreach ($result as $res) {
             if ($res['parentId'] == "") {
-                echo '<li id="' . $res['id'] . '" >';
-                echo '<div class="li-parent-comments">';
-                echo "<p class='authot'>Пользователь: " . $res['author'] . "</p>";
-                echo "<span class='date'>" . $res['date'] . "</span><br>";
-                echo "<p class='message-сomment'>Комментарий: " . $res['textComment'] . "</p>";
-                echo "<button id='btn" . $res['id'] . "' class='btn' onclick='addParentComment(" . $res['id'] . ");'>Ответить</button>";
-                echo '</div>';
-                createTree($res['id']);
-                echo '</li>';
+                $hierarchy=0;
+                $className="li-parent-comments";
+
+                require ('./views/comment.php');
             }
         }
         echo '</ul>';
@@ -27,22 +22,16 @@ function loadComments()
     }
 }
 
-function createTree($parentId)
+function createTree($parentId, $hierarchy)
 {
+    $hierarchy++;
     $tt = new dbHelper();
     $result = $tt->getParentComments($parentId);
-    if (count($result > 0)) {
+    if (count($result > 0) && $hierarchy<6) {
         echo '<ul>';
         foreach ($result as $res) {
-            echo '<li id="' . $res['id'] . '" >';
-            echo '<div class="li-child-comments">';
-            echo "<p class='authot'>Пользователь: " . $res['author'] . "</p>";
-            echo "<span class='date'>" . $res['date'] . "</span><br>";
-            echo "<p class='message-сomment'>Комментарий: " . $res['textComment'] . "</p>";
-            echo "<button id='btn" . $res['id'] . "' class='btn' onclick='addParentComment(" . $res['id'] . ");'>Ответить</button>";
-            echo '</div>';
-            createTree($res['id']);
-            echo '</li>';
+            $className="li-child-comments";
+           require ('./views/comment.php');
         }
         echo '</ul>';
     }

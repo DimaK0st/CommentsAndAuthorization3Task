@@ -1,8 +1,3 @@
-<?php
-
-function getAuthPage()
-{
-    echo('
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link href="/style/authorization.css" rel="stylesheet">
@@ -29,7 +24,7 @@ function getAuthPage()
                     <button type="submit" class="btn btn-default">Вход</button>
                 </div>
                 <div class="form-group">
-                    <a  onclick="window.location.href = \'/register\'" style="cursor: pointer;text-decoration: none;" class="btn2 btn-default">Зарегистрироваться</a>
+                    <a  onclick="window.location.href = '/register'" style="cursor: pointer;text-decoration: none;" class="btn2 btn-default">Зарегистрироваться</a>
                 </div>
             </form>
         </div>
@@ -37,5 +32,3 @@ function getAuthPage()
     </div><!-- /.row -->
 </div><!-- /.container -->
 <script src="/script/authorization.js"></script>
-    ');
-}

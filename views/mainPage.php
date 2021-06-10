@@ -1,45 +1,40 @@
-<?php
-
-function getMainPage()
-{
-    echo "
 <style>
-    *{
-    text-align: center;
+    * {
+        text-align: center;
     }
-    
-    .all-task{
-    width: 60%;
-    margin: auto;
+
+    .all-task {
+        width: 60%;
+        margin: auto;
     }
-    
-    span{
-    font-size: 30px;
+
+    span {
+        font-size: 30px;
     }
-    
-    button{
-    font-size: 30px;
+
+    button {
+        font-size: 30px;
     }
 
 </style>
 
-    <body>
+<body>
 <div class='all-task'>
-<div>
-    <span > 1 Задание </span >
-    <br>
-    <button onclick = \"window.location.href = '/comments'\" >Комментарии</button >
-</div >
-<div >
-    <span > 2 Задание </span >
-    <br>
-    <button onclick = \"window.location.href = '/auth'\" > Форма авторизации </button >
-    <br>
-    <button onclick = \"window.location.href = '/register'\" > Форма регистрации </button >
+    <div>
+        <span> 1 Задание </span>
+        <br>
+        <button onclick="window.location.href = '/comments'">Комментарии
+        </button>
+    </div>
+    <div>
+        <span> 2 Задание </span>
+        <br>
+        <button onclick="window.location.href = '/auth'"> Форма авторизации
+        </button>
+        <br>
+        <button onclick="window.location.href = '/register'"> Форма регистрации
+        </button>
 
-</div >
+    </div>
 </div>
-</body >
-";
-
-    }
+</body>

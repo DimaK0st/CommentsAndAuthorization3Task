@@ -1,13 +1,9 @@
 <?php
 
 
-include('views/authorization.php');
-include('views/registration.php');
-include('views/successAuthorization.php');
-include('views/comments.php');
-include('views/mainPage.php');
 include('controllers/controller.php');
 require_once('models/dbHelper.php');
+require_once('models/modelComments.php');
 
 
 $requestUri = explode('/', stristr($_SERVER['REQUEST_URI'] . '?', '?', true));
@@ -18,13 +14,14 @@ $router['GET'] = [
     '/\/register/' => ['getRegisterPage'],
     '/\/successAuth/' => ['successAuthorization'],
     '/\/comments/' => ['comments'],
+    '/\/loadComments/' => ['loadComments'],
     '/\//' => ['getMainPage']
 ];
 $router['POST'] = [
     '/\/post\/auth/' => ['postAuth'],
     '/\/post\/register/' => ['postRegister'],
-    '/\/post\/addComments/' => ['postAddComments'],
-    '/\/post\/loadComments/' => ['loadComments']
+    '/\/post\/addComments/' => ['postAddComments']
+
 ];
 $router['PUT'] = [];
 $router['DELETE'] = [

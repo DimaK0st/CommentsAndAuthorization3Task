@@ -1,5 +1,32 @@
 <?php
 
+function getMainPage()
+{
+    require('./views/mainPage.php');
+}
+
+function getAuthPage()
+{
+    require('./views/authorization.php');
+}
+
+
+function comments()
+{
+    require_once ('models/modelComments.php');
+    require('./views/comments.php');
+}
+
+function getRegisterPage()
+{
+    require ('./views/registration.php');
+}
+
+function successAuthorization()
+{
+    require ('./views/successAuthorization.php');
+}
+
 function postAuth()
 {
     $db = new dbHelper();
